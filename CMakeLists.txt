@@ -1,3 +1,15 @@
+#for backwards compatibility
+cmake_minimum_required(VERSION 3.5.1)
+
+#set output directory for binaries
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+
+option(BUILD_EXAMPLES "Set to TRUE if you want to build examples" FALSE)
+option(BUILD_DOC "Set to TRUE if you want to build library documentation" FALSE)
+option(BUILD_TESTING "Set to TRUE if you want to build unit tests" FALSE)
+
 set(VALID_BUILD_TYPES "Release" "Debug" "MinSizeRel" "RelWithDebInfo")
 
 project("CMakLibraryTemplate" VERSION "0.0.0")
@@ -32,3 +44,6 @@ if(NOT TARGET uninstall)
   add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 endif()
+
+include("CPackConfig")
+include("CPack")
