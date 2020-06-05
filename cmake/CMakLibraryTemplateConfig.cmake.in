@@ -1,0 +1,25 @@
+
+#There should not be any components
+if(NOT ${${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS} STREQUAL "")
+	message(WARNING "Package ${CMAKE_FIND_PACKAGE_NAME} does not support components")
+endif()
+
+
+set(${CMAKE_FIND_PACKAGE_NAME}_FOUND true)
+
+
+set(${CMAKE_FIND_PACKAGE_NAME}_CONFIG_FILE "${CMAKE_CURRENT_LIST_DIR}/${CMAKE_FIND_PACKAGE_NAME}ExportsShared.cmake")
+
+if(${CMAKE_FIND_PACKAGE_NAME}_STATIC)
+	set(${CMAKE_FIND_PACKAGE_NAME}_CONFIG_FILE "${CMAKE_CURRENT_LIST_DIR}/${CMAKE_FIND_PACKAGE_NAME}ExportsStatic.cmake")
+endif()
+
+
+if(EXISTS "${CMAKE_FIND_PACKAGE_NAME}")
+	include("${CMAKE_FIND_PACKAGE_NAME}")
+else()
+	set(${CMAKE_FIND_PACKAGE_NAME}_FOUND false)
+	
+	#Create an error message 
+	set(${CMAKE_FIND_PACKAGE_NAME}_NOT_FOUND_MESSAGE "Unable to find package ${CMAKE_FIND_PACKAGE_NAME}")
+endif()
