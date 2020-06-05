@@ -1,0 +1,14 @@
+#ignore the build directory
+build/
+BUILD/
+Build/
+bUILD/
+
+
+#ignore linux hidden directories
+.fuse*
+
+#ignore vim files
+*.swo
+*.swp
+*.swn
